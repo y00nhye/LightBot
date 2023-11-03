@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InputBtnDrop : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPointerExitHandler
+public class InputBtnDrop : MonoBehaviour, IPointerEnterHandler, IDropHandler, IPointerExitHandler //버튼 드랍 시 상호작용 구현 클래스
 {
     Image img;
     Color color;

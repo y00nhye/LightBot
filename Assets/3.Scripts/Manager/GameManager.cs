@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public RoundInfo[] roundInfo;
-    
+    //라운드 정보
+    public RoundInfo[] roundInfo;   
     public int roundAll;
     public int roundCnt;
     public int currentLight;
+    public bool isFinish = false;
+    [SerializeField] private GameObject finishBoard;
+    [SerializeField] private GameObject completeBoard;
 
+    //플레이어 움직임 실행 할 int 값 저장
     public Dictionary<int, List<int>> playerInput = new Dictionary<int, List<int>>();
     public List<int> playerMainInput = new List<int>();
     public List<int> playerProc1Input = new List<int>();
     public List<int> playerProc2Input = new List<int>();
 
-    public bool isFinish = false;
-
-    [SerializeField] private GameObject finishBoard;
-    [SerializeField] private GameObject completeBoard;
-
-    private void OnEnable()
+    private void OnEnable() //dictionary에 list 할당
     {
         playerInput.Add(0, playerMainInput);
         playerInput.Add(1, playerProc1Input);
         playerInput.Add(2, playerProc2Input);
     }
 
-    private void Start()
+    private void Start() //전체 라운드 수 체크 및 라운드 초기화
     {
         for(int i = 0; i < roundInfo.Length; i++)
         {
@@ -37,7 +36,7 @@ public class GameManager : Singleton<GameManager>
         NextStageBtn();
     }
 
-    private void Update()
+    private void Update() //게임 종료 조건 체크
     {
         if (isFinish)
         {
@@ -56,7 +55,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void NextStageBtn()
+    public void NextStageBtn() //라운드 초기화 버튼
     {
         isFinish = false;
 
@@ -65,14 +64,14 @@ public class GameManager : Singleton<GameManager>
         RoundSet();
     }
 
-    public void RoundSet()
+    public void RoundSet() //라운드 세팅 
     {
         currentLight = 0;
 
         UIManager.Instance.UIReset();
         PlayerInput.Instance.InputReset();
 
-        FindObjectOfType<MapLoader>().LoadMap();
+        FindObjectOfType<MapLoader>().LoadMap(roundCnt);
         FindObjectOfType<PlayerAction>().LoadPlayer();
     }
 

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour
+public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 {
-    [SerializeField] Command[] playerCommandList;
+    [SerializeField] Command[] playerCommandList; //커맨드 상속 받아 구현된 클래스 리스트 (순서대로 삽입)
 
     Command playerCommand;
 
@@ -21,7 +21,7 @@ public class PlayerAction : MonoBehaviour
     int moveProc1Cnt;
     int moveProc2Cnt;
 
-    private void OnEnable()
+    private void OnEnable() //default 플레이어 커맨드 설정
     {
         playerCommand = playerCommandList[0];
     }
@@ -76,7 +76,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    private void MainSimulation()
+    private void MainSimulation() //메인 함수에 삽입된 플레이어 커맨드 실행
     {
         if (moveMainCnt == GameManager.Instance.playerInput[0].Count)
         {
@@ -105,7 +105,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    private bool Proc1Simulation()
+    private bool Proc1Simulation() //Proc1 함수에 삽입된 플레이어 커맨드 실행
     {
         if (GameManager.Instance.playerInput[1].Count == moveProc1Cnt)
         {
@@ -136,7 +136,7 @@ public class PlayerAction : MonoBehaviour
         return false;
     }
 
-    private bool Proc2Simulation()
+    private bool Proc2Simulation() //Proc2 함수에 삽입된 플레이어 커맨드 실행
     {
         if (GameManager.Instance.playerInput[2].Count == moveProc2Cnt)
         {
@@ -167,15 +167,15 @@ public class PlayerAction : MonoBehaviour
         return false;
     }
 
-    private void Movement(int playerMove)
+    private void Movement(int playerMove) //이동 구현
     {
         isReady = false;
 
         playerCommand = playerCommandList[playerMove];
-        playerCommand.Action(isWall, isJump, isJumpDown);
+        playerCommand.Action(isWall, isJump, isJumpDown); //플레이어 커맨드에 구현된 action 함수 실행
     }
 
-    public void StartMove()
+    public void StartMove() //움직임 시작 상태 구현
     {
         moveMainCnt = 0;
         moveProc1Cnt = 0;
@@ -188,7 +188,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    public void StopMove()
+    public void StopMove() //움직임 멈춤 상태 구현
     {
         playerCommand.playerAni.SetBool("GO", false);
         playerCommand.playerAni.SetBool("JUMP", false);
@@ -214,7 +214,7 @@ public class PlayerAction : MonoBehaviour
         UIManager.Instance.ResultBoardBtnOff(2);
     }
 
-    private void FinishCheck()
+    private void FinishCheck() // 라운드 종료 확인
     {
         if (GameManager.Instance.currentLight == GameManager.Instance.roundInfo[GameManager.Instance.roundCnt - 1].lightCnt)
         {
@@ -226,7 +226,7 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    public void LoadPlayer()
+    public void LoadPlayer() //맵 로드 시 처음 플레이어 소환 구현
     {
         transform.position = new Vector3(
             GameObject.Find("Base1").transform.position.x,
@@ -246,7 +246,7 @@ public class PlayerAction : MonoBehaviour
         isJumpDown = false;
     }
 
-    IEnumerator LoadPlayer_co()
+    IEnumerator LoadPlayer_co() //플레이어 소환 코루틴
     {
         transform.position += Vector3.up;
 

@@ -6,13 +6,13 @@ public class MapLoader : MonoBehaviour
 {
     [SerializeField] private GameObject[] maps;
 
-    public void LoadMap()
+    public void LoadMap(int roundCnt)
     {
-        if (GameManager.Instance.roundCnt > 1)
+        if (roundCnt > 1)
         {
-            maps[GameManager.Instance.roundCnt - 2].SetActive(false);
+            maps[roundCnt - 2].SetActive(false);
         }
-        maps[GameManager.Instance.roundCnt - 1].SetActive(false);
-        maps[GameManager.Instance.roundCnt - 1].SetActive(true);
+        maps[roundCnt - 1].SetActive(false);
+        maps[roundCnt - 1].SetActive(true);
     }
 }

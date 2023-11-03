@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InputBtnDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InputBtnDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler //버튼 드래그 시 상호작용 구현 클래스
 {
     [SerializeField] Image copyObject;
     RectTransform rect;

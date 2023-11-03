@@ -40,7 +40,7 @@ public class Light_Command : Command
     {
         if (lightAni != null)
         {
-            if (lightIntensity.intensity == 0)
+            if (lightIntensity.intensity == 0) //light ÄÑ±â
             {
                 lightAni.SetBool("LIGHT", true);
                 lightAniOn.Add(lightAni);
@@ -51,7 +51,7 @@ public class Light_Command : Command
             }
             else
             {
-                lightAni.SetBool("LIGHT", false);
+                lightAni.SetBool("LIGHT", false); //light ²ô±â
                 lightAniOn.Remove(lightAni);
 
                 GameManager.Instance.currentLight--;

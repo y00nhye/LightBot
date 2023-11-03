@@ -5,34 +5,33 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    /*
-    <UI 관리 스크립트>
-
-    - 결과 보드 UI 배치
-    - 라운드 별 버튼 배치
-     */
-
     [Header("Result Board UI")]
     [SerializeField] private GameObject resultBoard;
+    [SerializeField] private GameObject[] resultBlock;
+
+    [Space(10f)]
+
+    [SerializeField] private Sprite[] resultSprite;
+    [SerializeField] private Sprite[] OnBtnSprite;
+    [SerializeField] private Image[] boardImg;
+    [SerializeField] private Color[] boardColor;
+
+    [Space(10f)]
+
     [SerializeField] private GameObject[] mainBoardInput;
     [SerializeField] private GameObject[] proc1BoardInput;
     [SerializeField] private GameObject[] proc2BoardInput;
-    [SerializeField] private Sprite[] resultSprite;
-    [SerializeField] private Sprite[] OnBtnSprite;
-    [SerializeField] private GameObject[] resultBlock;
-    [SerializeField] private Image[] boardImg;
-    [SerializeField] private Color[] boardColor;
     [HideInInspector] public GameObject[] selectBoradInput;
     [HideInInspector] public int selectBoardNum;
 
-    [Space(10f)]
+    [Space(20f)]
 
     [Header("Start or Stop UI")]
     [SerializeField] private Image startOrStopBtn;
     [SerializeField] private Sprite startSprite;
     [SerializeField] private Sprite stopSprite;
 
-    [Space(10f)]
+    [Space(20f)]
 
     [Header("Player Input UI")]
     [SerializeField] private GameObject[] inputBtn;
@@ -40,7 +39,7 @@ public class UIManager : Singleton<UIManager>
 
     private bool isBtnOn = false;
 
-    public void UIReset()
+    public void UIReset() //모든 UI 초기화
     {
         isBtnOn = true;
         StartOrStopBtn();
@@ -66,7 +65,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void PlayerInputBtnOn()
+    public void PlayerInputBtnOn() //하단 플레이어 조작 버튼 세팅
     {
         boardImg[1].gameObject.SetActive(false);
         boardImg[2].gameObject.SetActive(false);
@@ -88,7 +87,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void ResultBoardSet(List<int> playerInput)
+    public void ResultBoardSet(List<int> playerInput) //우측 결과 UI 업데이트
     {
         isBtnOn = true;
         StartOrStopBtn();
@@ -116,7 +115,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void StartOrStopBtn()
+    public void StartOrStopBtn() //시작, 멈춤 버튼 세팅
     {
         isBtnOn = !isBtnOn;
 
@@ -134,7 +133,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void ResultBoardBtnOn(int num, int boardNum)
+    public void ResultBoardBtnOn(int num, int boardNum) //우측 결과 보드 버튼 색 ON 함수
     {
         if (boardNum == 0)
         {
@@ -149,7 +148,7 @@ public class UIManager : Singleton<UIManager>
             proc2BoardInput[num].GetComponent<Image>().sprite = OnBtnSprite[1];
         }
     }
-    public void ResultBoardBtnOff(int boardNum)
+    public void ResultBoardBtnOff(int boardNum) //우측 결과 보드 버튼 색 OFF 함수
     {
         if (boardNum == 0)
         {
@@ -174,7 +173,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void ResultBoardClick(int num)
+    public void ResultBoardClick(int num) //우측 결과 보드 선택 시스템 구현
     {
         for (int i = 0; i < boardImg.Length; i++)
         {
