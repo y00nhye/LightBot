@@ -22435,7 +22435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f3e073fc35a6f45bfe36255004f9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.05
+  movespeed: 0.005
   playerAni: {fileID: 3595372491873080999}
   canGo: 0
   canJump: 0
@@ -22453,7 +22453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a049ca85c720a84db702dcbab3d9d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.05
+  movespeed: 0.005
   playerAni: {fileID: 3595372491873080999}
   canGo: 0
   canJump: 0
@@ -22473,7 +22473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817573dd4de813b44bdd33908ff388d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.05
+  movespeed: 0.005
   playerAni: {fileID: 3595372491873080999}
   canGo: 0
   canJump: 0
@@ -22491,7 +22491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d330d76a09864347a917af6a8302cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.05
+  movespeed: 0.005
   playerAni: {fileID: 3595372491873080999}
   canGo: 0
   canJump: 0
@@ -22509,7 +22509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55418c87132eceb47875df7fe53e5036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.03
+  movespeed: 0.003
   playerAni: {fileID: 3595372491873080999}
   canGo: 0
   canJump: 0

@@ -194,13 +194,7 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
         playerCommand.playerAni.SetBool("JUMP", false);
         playerCommand.StopAllCoroutines();
 
-        if (GetComponent<Light_Command>().lightAniOn.Count != 0)
-        {
-            for (int i = 0; i < GetComponent<Light_Command>().lightAniOn.Count; i++)
-            {
-                GetComponent<Light_Command>().lightAniOn[i].SetBool("LIGHT", false);
-            }
-        }
+        GetComponent<Light_Command>().LightReset();
 
         isMove = false;
 
@@ -228,6 +222,8 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 
     public void LoadPlayer() //맵 로드 시 처음 플레이어 소환 구현
     {
+        GetComponent<Light_Command>().lightAni = null;
+
         transform.position = new Vector3(
             GameObject.Find("Base1").transform.position.x,
             GameManager.Instance.roundInfo[GameManager.Instance.roundCnt - 1].playerYPos,
@@ -239,7 +235,6 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 
         StartCoroutine(LoadPlayer_co());
 
-        GetComponent<Light_Command>().lightAni = null;
         isMove = false;
         isWall = false;
         isJump = false;
@@ -252,7 +247,7 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 
         while (Vector3.Distance(transform.position, playerStartPos) > 0.01f)
         {
-            transform.position = Vector3.Lerp(transform.position, playerStartPos, 0.005f * 2);
+            transform.position = Vector3.Lerp(transform.position, playerStartPos, playerCommand.movespeed * 2);
 
             yield return null;
         }

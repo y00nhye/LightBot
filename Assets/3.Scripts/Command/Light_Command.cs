@@ -18,15 +18,6 @@ public class Light_Command : Command
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Light"))
-        {
-            lightAni = null;
-            lightIntensity = null;
-        }
-    }
-
     public override void Action(bool isWall, bool isJump, bool isJumpDown)
     {
         isReady = false;
@@ -65,5 +56,16 @@ public class Light_Command : Command
         }
 
         isReady = true;
+    }
+
+    public void LightReset()
+    {
+        for (int i = 0; i < lightAniOn.Count; i++)
+        {
+            lightAniOn[i].SetBool("LIGHT", false);
+            lightAniOn[i].GetComponentInChildren<Light>().intensity = 0;
+        }
+
+        lightAniOn = new List<Animator>();
     }
 }
