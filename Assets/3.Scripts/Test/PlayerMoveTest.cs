@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
+public class PlayerMoveTest : MonoBehaviour
 {
-    [SerializeField] UIManager UIManager;
-    [SerializeField] GameManager GameManager;
-    
     [SerializeField] Command[] playerCommandList; //커맨드 상속 받아 구현된 클래스 리스트 (순서대로 삽입)
 
     Command playerCommand;
@@ -24,7 +21,6 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
     int moveProc1Cnt;
     int moveProc2Cnt;
 
-    #region Set
     private void OnEnable() //default 플레이어 커맨드 설정
     {
         playerCommand = playerCommandList[1];
@@ -64,9 +60,7 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
             isJumpDown = false;
         }
     }
-    #endregion
 
-    #region Simulation
     private void Update()
     {
         if (isMove)
@@ -76,15 +70,15 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
                 MainSimulation();
             }
 
+            FinishCheck();
+
             isReady = playerCommand.isReady;
         }
     }
 
     private void MainSimulation() //메인 함수에 삽입된 플레이어 커맨드 실행
     {
-        if (FinishCheck()) return; //게임 종료 체크
-
-        if (moveMainCnt == GameManager.playerInput[0].Count) //이동 종료 체크
+        if (moveMainCnt == GameManager.Instance.playerInput[0].Count)
         {
             playerCommand.playerAni.SetBool("GO", false);
             playerCommand.playerAni.SetBool("JUMP", false);
@@ -94,47 +88,47 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
             return;
         }
 
-        UIManager.ResultBoardBtnOn(moveMainCnt, 0); //Command 실행 보드 설정
+        UIManager.Instance.ResultBoardBtnOn(moveMainCnt, 0);
 
-        if (GameManager.playerInput[0][moveMainCnt] == 5) //command == proc1 일 경우
+        if (GameManager.Instance.playerInput[0][moveMainCnt] == 5)
         {
             if (Proc1Simulation()) moveMainCnt++;
         }
-        else if (GameManager.playerInput[0][moveMainCnt] == 6) //command == proc2 일 경우
+        else if (GameManager.Instance.playerInput[0][moveMainCnt] == 6)
         {
             if (Proc2Simulation()) moveMainCnt++;
         }
-        else //command == normal 일 경우
+        else
         {
-            Movement(GameManager.playerInput[0][moveMainCnt]);
+            Movement(GameManager.Instance.playerInput[0][moveMainCnt]);
             moveMainCnt++;
         }
     }
 
     private bool Proc1Simulation() //Proc1 함수에 삽입된 플레이어 커맨드 실행
     {
-        if (GameManager.playerInput[1].Count == moveProc1Cnt) //proc1 종료 체크
+        if (GameManager.Instance.playerInput[1].Count == moveProc1Cnt)
         {
             moveProc1Cnt = 0;
-            UIManager.ResultBoardBtnOff(1);
+            UIManager.Instance.ResultBoardBtnOff(1);
             playerCommand.isReady = true;
             return true;
         }
 
-        UIManager.ResultBoardBtnOn(moveProc1Cnt, 1); //Command 실행 보드 설정
+        UIManager.Instance.ResultBoardBtnOn(moveProc1Cnt, 1);
 
-        if (GameManager.playerInput[1][moveProc1Cnt] == 5) //command == proc1 일 경우
+        if (GameManager.Instance.playerInput[1][moveProc1Cnt] == 5)
         {
-            UIManager.ResultBoardBtnOff(1);
+            UIManager.Instance.ResultBoardBtnOff(1);
             moveProc1Cnt = 0;
         }
-        else if (GameManager.playerInput[1][moveProc1Cnt] == 6) //command == proc2 일 경우
+        else if (GameManager.Instance.playerInput[1][moveProc1Cnt] == 6)
         {
             if (Proc2Simulation()) moveProc1Cnt++;
         }
-        else //command == normal 일 경우
+        else
         {
-            Movement(GameManager.playerInput[1][moveProc1Cnt]);
+            Movement(GameManager.Instance.playerInput[1][moveProc1Cnt]);
 
             moveProc1Cnt++;
         }
@@ -144,37 +138,35 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 
     private bool Proc2Simulation() //Proc2 함수에 삽입된 플레이어 커맨드 실행
     {
-        if (GameManager.playerInput[2].Count == moveProc2Cnt)
+        if (GameManager.Instance.playerInput[2].Count == moveProc2Cnt)
         {
             moveProc2Cnt = 0;
-            UIManager.ResultBoardBtnOff(2);
+            UIManager.Instance.ResultBoardBtnOff(2);
             playerCommand.isReady = true;
             return true;
         }
 
-        UIManager.ResultBoardBtnOn(moveProc2Cnt, 2);
+        UIManager.Instance.ResultBoardBtnOn(moveProc2Cnt, 2);
 
-        if (GameManager.playerInput[2][moveProc2Cnt] == 6)
+        if (GameManager.Instance.playerInput[2][moveProc2Cnt] == 6)
         {
-            UIManager.ResultBoardBtnOff(2);
+            UIManager.Instance.ResultBoardBtnOff(2);
             moveProc2Cnt = 0;
         }
-        else if (GameManager.playerInput[2][moveProc2Cnt] == 5)
+        else if (GameManager.Instance.playerInput[2][moveProc2Cnt] == 5)
         {
             if (Proc1Simulation()) moveProc2Cnt++;
         }
         else
         {
-            Movement(GameManager.playerInput[2][moveProc2Cnt]);
+            Movement(GameManager.Instance.playerInput[2][moveProc2Cnt]);
 
             moveProc2Cnt++;
         }
 
         return false;
     }
-    #endregion
 
-    #region Move
     private void Movement(int playerMove) //이동 구현
     {
         isReady = false;
@@ -216,7 +208,7 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
         UIManager.Instance.ResultBoardBtnOff(2);
     }
 
-    private bool FinishCheck() // 라운드 종료 확인
+    private void FinishCheck() // 라운드 종료 확인
     {
         if (GameManager.Instance.currentLight == GameManager.Instance.roundInfo[GameManager.Instance.roundCnt - 1].lightCnt)
         {
@@ -224,13 +216,8 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
             playerCommand.playerAni.SetBool("JUMP", false);
             playerCommand.StopAllCoroutines();
 
-            isMove = false;
             GameManager.Instance.isFinish = true;
-
-            return true;
         }
-
-        return false;
     }
 
     public void LoadPlayer() //맵 로드 시 처음 플레이어 소환 구현
@@ -238,10 +225,10 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
         GetComponent<Light_Command>().lightAni = null;
 
         transform.position = new Vector3(
-            GameObject.Find("Base1").transform.position.x,
+            GameObject.Find("Base_start").transform.position.x,
             GameManager.Instance.roundInfo[GameManager.Instance.roundCnt - 1].playerYPos,
-            GameObject.Find("Base1").transform.position.z);
-        transform.eulerAngles = new Vector3(0, GameObject.Find("Base1").transform.eulerAngles.y, 0);
+            GameObject.Find("Base_start").transform.position.z);
+        transform.eulerAngles = new Vector3(0, GameObject.Find("Base_start").transform.eulerAngles.y, 0);
 
         playerStartPos = transform.position;
         playerStartRot = transform.eulerAngles;
@@ -269,5 +256,4 @@ public class PlayerAction : MonoBehaviour //플레이어 이동 구현 클래스
 
         UIManager.Instance.PlayerInputBtnOn();
     }
-    #endregion
 }

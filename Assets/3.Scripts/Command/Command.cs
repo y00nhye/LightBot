@@ -4,7 +4,7 @@ using UnityEngine;
 
 //플레이어가 움직일 때 사용하는 공통 요소를 묶은 부모 클래스
 public abstract class Command : MonoBehaviour
-{
+{   
     public float movespeed = 0.005f; //움직임 속도
     public Animator playerAni;
 

@@ -1,0 +1,168 @@
+{
+  "round1": [
+    {
+      "baseNum": "0",
+      "x": "0",
+      "z": "-2",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "1",
+      "x": "0",
+      "z": "-1",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "2",
+      "x": "2",
+      "z": "0",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "3",
+      "x": "1",
+      "z": "0",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "4",
+      "x": "0",
+      "z": "0",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "1"
+    },
+    {
+      "baseNum": "5",
+      "x": "-1",
+      "z": "0",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "6",
+      "x": "-2",
+      "z": "0",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "7",
+      "x": "0",
+      "z": "1",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "8",
+      "x": "0",
+      "z": "2",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    }
+  ],
+  "round2": [
+    {
+      "baseNum": "0",
+      "x": "-1",
+      "z": "-1",
+      "y": "1",
+      "yAngle": "270",
+      "type": "1",
+      "isStart": "1"
+    },
+    {
+      "baseNum": "1",
+      "x": "0",
+      "z": "-1",
+      "y": "2",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "2",
+      "x": "1",
+      "z": "-1",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "3",
+      "x": "-1",
+      "z": "0",
+      "y": "2",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "4",
+      "x": "0",
+      "z": "0",
+      "y": "3",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "5",
+      "x": "1",
+      "z": "0",
+      "y": "2",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "6",
+      "x": "-1",
+      "z": "1",
+      "y": "1",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "7",
+      "x": "0",
+      "z": "1",
+      "y": "2",
+      "yAngle": "0",
+      "type": "0",
+      "isStart": "0"
+    },
+    {
+      "baseNum": "8",
+      "x": "1",
+      "z": "1",
+      "y": "1",
+      "yAngle": "0",
+      "type": "1",
+      "isStart": "0"
+    }
+  ]
+}
